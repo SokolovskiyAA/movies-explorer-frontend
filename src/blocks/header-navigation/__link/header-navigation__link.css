@@ -1,0 +1,10 @@
+.header-navigation__link {
+    color: #FFF;
+    margin: 0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+    font-style: normal;
+    align-items: center;  
+}

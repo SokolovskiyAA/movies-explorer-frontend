@@ -1,0 +1,5 @@
+.header-navigation__links {
+    display: flex;
+    vertical-align: auto;
+    gap: 16px;
+}
