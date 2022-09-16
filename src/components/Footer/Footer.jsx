@@ -2,8 +2,7 @@ import React from 'react';
 import './Footer.css';
 import { footerLinks } from '../../utils/constants';
 
-export default function Footer(props) {
-    const isLoggedIn = true;
+export default function Footer() {
     return (
         <footer className="footer">
             <p className="footer__text">

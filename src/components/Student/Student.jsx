@@ -35,7 +35,7 @@ const Student = () => {
                         <li className="project">
                             <a href={project.url} className="project__link" target="_blank" rel="noreferrer">
                                 {project.title}
-                                <img className="project__link_icon" src={linkIcon}/>
+                                <img className="project__link_icon" src={linkIcon} alt="Иконка ссылки"/>
                             </a>
                         </li>
                     ))}
