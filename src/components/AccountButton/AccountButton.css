@@ -1,0 +1,27 @@
+.button_type_account {
+    display: flex;
+    border: none;
+    background: none;
+    width: 100px;
+    height: 30px;
+    gap: 17px;
+}
+
+.button__text_type_account {
+    margin: 7px 0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFF;
+    align-items: center;
+}
+
+.button__icon-account {
+    width: 26px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #313131;
+    background-image: url(../../images/icon-profile.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}

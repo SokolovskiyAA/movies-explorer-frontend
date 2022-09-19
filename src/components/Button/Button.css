@@ -10,11 +10,15 @@
 }
 
 .button:hover {
-  opacity: .5;
+  opacity: .7;
 }
 
 .button:active {
   transform: scale(0.9);
+}
+
+.button_type_blue {
+  background-color: #4285f4;
 }
 
 .button_type_red {

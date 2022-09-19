@@ -32,7 +32,7 @@ const Student = () => {
                 <h3 className="portfolio__title">Портфолио</h3>
                 <ul className="portfolio__projects">
                     {projects.map((project) => (
-                        <li className="project">
+                        <li key={project.id} className="project">
                             <a href={project.url} className="project__link" target="_blank" rel="noreferrer">
                                 {project.title}
                                 <img className="project__link_icon" src={linkIcon} alt="Иконка ссылки"/>

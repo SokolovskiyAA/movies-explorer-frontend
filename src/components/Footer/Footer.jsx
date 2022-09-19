@@ -12,7 +12,7 @@ export default function Footer() {
                 <p className="footer__year">&#169; 2022</p>
                 <ul className="footer__links">
                     {footerLinks.map((link) => (
-                        <li className="footer__link">
+                        <li key={link.id} className="footer__link">
                             <a className="link" href={link.url}>{link.title}</a>
                         </li>
                     ))}

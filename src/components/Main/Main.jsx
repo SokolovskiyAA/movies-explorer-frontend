@@ -6,34 +6,17 @@ import Technologies from '../Technologies/Technologies';
 import Student from '../Student/Student';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Promo from '../Promo/Promo';
 
-export default function Main() {
+export default function Main(props) {
     return (
         <>
-            <Header />
+            <Header
+                isLoggedIn={props.isLoggedIn}
+                isOpen={props.isOpen}
+                onMenuOpen={props.onMenuOpen} />
             <main className='main'>
-                <section className="main__promo">
-                    <h1 className="promo__title">
-                        Учебный проект студента факультета Веб-разработки.
-                    </h1>
-                    <nav className="promo-navigation">
-                        <a href='#about'>
-                            <Button className="promo-navigation__link">
-                                О проекте
-                            </Button>
-                        </a>
-                        <a href='#technologies'>
-                            <Button className="promo-navigation__link">
-                                Технологии
-                            </Button>
-                        </a>
-                        <a href='#student'>
-                            <Button className="promo-navigation__link">
-                                Студент
-                            </Button>
-                        </a>
-                    </nav>
-                </section>
+                <Promo />
                 <About />
                 <Technologies />
                 <Student />

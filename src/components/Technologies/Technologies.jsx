@@ -5,7 +5,7 @@ import Title from "../Title/Title";
 import { technoList } from "../../utils/constants";
 import Button from '../Button/Button';
 
-const Technologies = () => {
+export default function Technologies() {
     return (
         <section className="technologies" id="technologies">
             <div className="technologies__container">
@@ -20,7 +20,7 @@ const Technologies = () => {
                 </div>
                 <ul className="technologies__list">
                     {technoList.map((techno) => (
-                        <li className="techno-item">
+                        <li key={techno} className="techno-item">
                             <Button className="techno-item__link">
                                 {techno}
                             </Button>
@@ -32,5 +32,3 @@ const Technologies = () => {
         </section>
     );
 };
-
-export default Technologies;
