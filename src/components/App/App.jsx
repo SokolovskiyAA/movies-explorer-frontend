@@ -25,7 +25,7 @@ function App() {
     setMovies(allMovies);
     setIsLoggedIn(true);
     setIsPreloaderOpen(false);
-  }, []);
+  }, []); 
 
   function onBurgerClick(isSidebarOpen) {
     setIsSidebarOpen(!isSidebarOpen);
