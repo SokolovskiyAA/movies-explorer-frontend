@@ -1,0 +1,237 @@
+.student {
+    margin: 110px auto 0;
+    max-width: calc(100% - 140px);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .student {
+        margin-top: 90px;
+        max-width: calc(100% - 50px * 2);
+    }
+}
+
+@media (max-width: 520px) {
+    .student {
+        margin-top: 70px;
+        max-width: calc(100% - 18px * 2);
+    }
+}
+
+.student__info {
+    margin: 0;
+    max-width: 100%;
+    padding-top: 66px;
+    display: flex;
+    flex-direction: row;
+    /* align-items: flex-start; */
+    justify-content: space-between;
+    gap: 49px;
+}
+
+@media (max-width: 500px) {
+    .student__info {
+        flex-direction: column-reverse;
+        gap: 40px;
+    }
+
+}
+
+.student__info_about-me {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: flex-start; */
+    max-width: 600px;
+}
+
+.student__info_foto {
+    width: 100%;
+    max-width: 270px;
+    min-width: 200px;
+    max-height: 327px;
+    align-self: top;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: 500px) {
+    .student__info_foto {
+        width: calc(100% - 14 * 2);
+        max-width: none;
+        height: 352px;
+    }
+
+}
+
+.about-me__title {
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: -0.04em;
+    color: #FFF;
+
+}
+
+.about-me__about {
+    margin: 0;
+    margin-top: 18px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: #FFF;
+}
+
+.about-me__description {
+    margin: 0;
+    margin-top: 26px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #FFF;
+}
+
+.about-me__link {
+    margin: auto 0 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFF;
+    text-decoration: none;
+    order: 2;
+    transition: all 0.2s ease-in-out;
+}
+
+.about-me__link:hover {
+    opacity: .5;
+}
+
+.portfolio__title {
+    margin: 101px 0 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #8B8B8B;
+}
+
+@media (max-width: 768px) {
+    .portfolio__title {
+        margin-top: 91px;
+        color: #A0A0A0;
+    }
+}
+
+@media (max-width: 500px) {
+    .portfolio__title {
+        font-size: 14px;
+        margin-top: 70px;
+    }
+}
+
+.portfolio__projects {
+    margin: 0;
+    margin-top: 30px;
+    margin-bottom: 125px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+}
+
+@media (max-width: 768px) {
+    .portfolio__projects {
+        margin-bottom: 90px;
+    }
+}
+
+@media (max-width: 500px) {
+    .portfolio__projects {
+        margin-bottom: 70px;
+    }
+}
+
+.project {
+    margin: 20px 0 0;    
+    text-decoration: none;
+    list-style: none;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #424242;
+}
+
+.project:last-of-type {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.project__link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+    color: #FFF;
+    transition: all 0.2s ease-in-out;
+}
+
+.project__link:hover {
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .project__link {
+        font-size: 28px;
+    }
+    .project {
+        padding-bottom: 19px;
+    }
+}
+
+@media (max-width: 500px) {
+    .project__link {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}
+
+.project__link_icon {
+    width: 29px;
+    height: 60px;
+}
+
+@media (max-width: 768px) {
+    .project__link_icon {
+        width: 27px;
+    }
+}
+
+@media (max-width: 500px) {
+    .project__link_icon {
+        width: 18px;
+        height: 28px;
+    }
+}

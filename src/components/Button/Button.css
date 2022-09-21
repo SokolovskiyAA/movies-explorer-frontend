@@ -1,0 +1,32 @@
+.button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+}
+
+.button:hover {
+  opacity: .7;
+}
+
+.button:active {
+  transform: scale(0.9);
+}
+
+.button_type_blue {
+  background-color: #4285f4;
+}
+
+.button_type_red {
+  background-color: #ee3465;
+}
+
+@media (max-width: 500px) {
+  .button_type_submit {
+    font-size: 12px;
+  }
+}

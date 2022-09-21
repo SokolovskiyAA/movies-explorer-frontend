@@ -1,0 +1,159 @@
+.about {
+    margin: 110px auto 0;
+    max-width: calc(100% - 140px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .about {
+        margin-top: 90px;
+        max-width: calc(100% - 50px * 2);
+    }
+}
+
+@media (max-width: 520px) {
+    .about {
+        margin-top: 70px;
+        max-width: calc(100% - 18px * 2);
+    }
+}
+
+.about__cards {
+    padding-top: 70px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+@media (max-width: 768px) {
+    .about__cards {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 520px) {
+    .about__cards {
+        padding-top: 60px;
+        flex-direction: column;
+        gap: 56px;
+    }
+}
+
+.text-card__title {
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    color: #FFF;
+    text-align: left;
+}
+
+@media (max-width: 520px) {
+    .text-card__title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+.text-card__description {
+    margin: 0;
+    margin-top: 26px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFF;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .text-card__description {
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 22px;
+    }
+}
+
+@media (max-width: 520px) {
+    .text-card__description {
+        font-size: 11px;
+        line-height: 16px;
+        margin-top: 16px;
+    }
+}
+
+.about__roadmap {
+    width: 100%;
+    display: flex;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin: 93px auto 90px;
+    color: #FFF;
+}
+
+@media (max-width: 520px) {
+    .about__roadmap {
+        font-size: 11px;
+        line-height: 13px;
+    }
+}
+
+.roadmap__backend {
+    flex: 2;
+}
+
+@media (max-width: 520px) {
+    .roadmap__backend {
+        flex: 1;
+    }
+}
+
+.roadmap__frontend {
+    flex: 8;
+}
+
+@media (max-width: 520px) {
+    .roadmap__frontend {
+        flex: 2;
+    }
+}
+
+.roadmap__time {
+    margin: 0;
+    padding: 9px 0;
+    background-color: #303030;
+    margin-bottom: 14px;
+}
+
+@media (max-width: 768px) {
+    .roadmap__time {
+        padding: 9px 0;
+    }
+}
+
+@media (max-width: 520px) {
+    .roadmap__time {
+        padding: 11px 0;
+        margin-bottom: 9px;
+    }
+}
+
+.roadmap__time_type_colored {
+    background-color: #3ddc84;
+    color: #000;
+}
+
+.roadmap__title {
+    margin: 0;
+    color: #8b8b8b;
+}
