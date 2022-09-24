@@ -11,6 +11,8 @@ import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import { savedMovies, allMovies } from '../../utils/constants';
 
+import { auth } from '../utils/auth.js';
+
 import './App.css';
 
 function App() {
@@ -20,12 +22,15 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [onSavedPage, setOnSavedPage] = React.useState(false);
   const [isPreloaderOpen, setIsPreloaderOpen] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState([]);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
+  const [message, setMessage] = React.useState(false);
 
   useEffect(() => {
     setMovies(allMovies);
-    setIsLoggedIn(true);
+    setIsLoggedIn(false);
     setIsPreloaderOpen(false);
-  }, []); 
+  }, []);
 
   function onBurgerClick(isSidebarOpen) {
     setIsSidebarOpen(!isSidebarOpen);
@@ -35,10 +40,25 @@ function App() {
     history.goBack();
   };
 
+  function onRegister(name, email, password) {
+    auth.register({ name, email, password })
+      .then((res) => {
+        setIsInfoTooltipOpen(true);
+        if (res) {
+          setMessage(true);
+          history.push('/sign-in');
+        }
+      })
+      .catch(() => {
+        setMessage(false);
+        setIsInfoTooltipOpen(true);
+      });
+  }
+
 
 
   return (
-    <CurrentUserContext.Provider value={{ onSavedPage, setOnSavedPage }}>
+    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="app">
         <div className="page__content">
           <Switch>
@@ -49,30 +69,28 @@ function App() {
                 onMenuOpen={onBurgerClick}
               />
             </Route>
-            <Route path="/movies">
-              <Movies
-                isLoggedIn={isLoggedIn}
-                isOpen={isSidebarOpen}
-                onMenuOpen={onBurgerClick}
-                movies={movies} 
-                isLoading={isPreloaderOpen}/>
-            </Route>
-            <Route path="/saved-movies">
-              <SavedMovies
-                isLoggedIn={isLoggedIn}
-                isOpen={isSidebarOpen}
-                onMenuOpen={onBurgerClick}
-                savedMovies={savedMovies} 
-                isLoading={isPreloaderOpen}/>
-            </Route>
-            <Route path="/profile" >
-              <Profile
-                isLoggedIn={isLoggedIn}
-                isOpen={isSidebarOpen}
-                onMenuOpen={onBurgerClick} />
-            </Route>
+            <ProtectedRoute path="/movies"
+              component={Movies}
+              isLoggedIn={isLoggedIn}
+              isOpen={isSidebarOpen}
+              onMenuOpen={onBurgerClick}
+              movies={movies}
+              isLoading={isPreloaderOpen} />
+            <ProtectedRoute path="/saved-movies"
+              component={SavedMovies}
+              isLoggedIn={isLoggedIn}
+              isOpen={isSidebarOpen}
+              onMenuOpen={onBurgerClick}
+              savedMovies={savedMovies}
+              isLoading={isPreloaderOpen} />
+            <ProtectedRoute path="/profile"
+              component={Profile}
+              isLoggedIn={isLoggedIn}
+              isOpen={isSidebarOpen}
+              onMenuOpen={onBurgerClick} />
             <Route path="/signup" >
-              <Register />
+              <Register
+                onRegister={onRegister} />
             </Route>
             <Route path="/signin" >
               <Login />

@@ -30,3 +30,8 @@
     font-size: 12px;
   }
 }
+
+.button_type_disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
