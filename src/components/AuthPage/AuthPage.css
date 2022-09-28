@@ -95,6 +95,10 @@
     color: #ee3465;
 }
 
+.auth-page__message_type_success {
+    color: #3DDC84;
+}
+
 @media (max-width: 500px) {
     .auth-page__message {
         font-size: 13px;

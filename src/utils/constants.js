@@ -130,3 +130,15 @@ export const savedMovies = [
       "https://upload.wikimedia.org/wikipedia/ru/thumb/a/a0/Simpsons_final_poster.png/274px-Simpsons_final_poster.png",
   },
 ];
+
+export const DEFAULT_ERROR_MESSAGE = "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
+export const SERVER_URL = "https://api.nomoreparties.co/";
+export const UNKNOWN_IMAGE_URL = "https://raw.githubusercontent.com/famovkin/movies-explorer-frontend/level-3/src/images/unknown-image.jpeg";
+export const UNKNOWN_TRAILER_URL = "https://www.youtube.com";
+export const UNKNOWN_CARD_TEXT = "Неизвестно";
+export const LAPTOP_WIDTH = 768;
+export const MOBILE_WIDTH = 480;
+export const LAPTOP_COUNT_MOVIES_START = 7;
+export const LAPTOP_COUNT_MOVIES_MORE = 7;
+export const MOBILE_COUNT_MOVIES_START = 5;
+export const MOBILE_COUNT_MOVIES_MORE = 1;

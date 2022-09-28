@@ -17,7 +17,7 @@ export const useCustomValidation = (currentName, currentEmail) => {
       case "film-query":
         if (value.length === 0 || value.length === undefined) {
           setErrors({ ...errors, [name]: "Запрос не может быть пустым" });
-        } else if (!new RegExp(/^[а-яА-ЯёЁa-zA-Z]+$/).test(value)) {
+        } else if (!new RegExp(/^[а-яА-ЯёЁa-zA-Z ]+$/).test(value)) {
           setErrors({ ...errors, [name]: "Нужно ввести ключевое слово" });
         } else {
           const newErrors = deleteKeyFromObj(errors, name);
@@ -25,9 +25,7 @@ export const useCustomValidation = (currentName, currentEmail) => {
         }
         break;
       case "name":
-        // сравниванием значение из инпута и значение их хранилища
         if (value === currentName) {
-          // не отображаем ошибку, а просто отключаем кнопку, поэтому пустая строка
           setErrors({ ...errors, [name]: "" });
         } else if (value.length === 0) {
           setRequiredError(name);

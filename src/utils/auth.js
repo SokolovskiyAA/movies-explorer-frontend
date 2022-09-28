@@ -8,11 +8,11 @@ class Auth {
         if (res.ok) {
             return res.json();
         } else {
-            return Promise.reject(`Ошибка ${res.status}`);
+            return Promise.reject(res);
         }
     }
 
-    register({name, email, password }) {
+    register({ name, email, password }) {
         return fetch(`${this._baseUrl}/signup`, {
             method: "POST",
             headers: {
@@ -34,15 +34,19 @@ class Auth {
                 'Accept': 'application/json',
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ password, email }),
-        }).then(this._getResponse);
+            body: JSON.stringify({
+                password,
+                email
+            }),
+        })
+            .then((res) => this._getResponse(res))
     }
 
     checkToken(token) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "GET",
             headers: {
-                'Accept': 'application/json',
+                // 'Accept': 'application/json',
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },

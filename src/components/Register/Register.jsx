@@ -9,8 +9,8 @@ import { countInputs } from "../../utils/countInputs";
 import "./Register.css";
 
 export default function Register(props) {
-  const { values, errors, handleChange, isFormValid, setIsFormValid } =
-    useCustomValidation();
+  const { values, errors, handleChange, isFormValid, setIsFormValid } = useCustomValidation();
+
   const amountInputs = countInputs(".input");
 
   useFormValidity(values, errors, amountInputs, setIsFormValid);
@@ -68,7 +68,7 @@ export default function Register(props) {
         >
           {props.message}
         </p>
-        <Button className={`button_type_blue button_type_submit ${(!isFormValid) && "button_type_disabled"
+        <Button className={`button_type_blue button_type_submit ${!isFormValid && "button_type_disabled"
           }`} type="submit">
           Зарегистрироваться
         </Button>
