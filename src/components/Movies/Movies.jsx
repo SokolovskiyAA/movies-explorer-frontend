@@ -13,6 +13,7 @@ import {
     LAPTOP_COUNT_MOVIES_MORE,
     MOBILE_COUNT_MOVIES_START,
     MOBILE_COUNT_MOVIES_MORE,
+    MAX_DURATION_SHORT_FILM,
 } from "../../utils/constants";
 
 import { moviesApi } from '../../utils/MoviesApi';
@@ -96,7 +97,7 @@ export default function Movies(props) {
     }
 
     function filterShortMovies(movies, query) {
-        return query ? filterMovies(movies, query).filter((movie) => movie.duration < 40) : movies;
+        return query ? filterMovies(movies, query).filter((movie) => movie.duration < MAX_DURATION_SHORT_FILM) : movies;
     }
 
     const submitHandler = async (isShortMovies, query) => {
