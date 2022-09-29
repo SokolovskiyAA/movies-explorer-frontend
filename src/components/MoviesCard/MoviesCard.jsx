@@ -8,6 +8,7 @@ import {
   UNKNOWN_IMAGE_URL,
   UNKNOWN_TRAILER_URL,
   UNKNOWN_CARD_TEXT,
+  urlPattern,
 } from "../../utils/constants";
 
 export default function MoviesCard(props) {
@@ -27,7 +28,7 @@ export default function MoviesCard(props) {
       year: props.card.year || UNKNOWN_CARD_TEXT,
       description: props.card.description || UNKNOWN_CARD_TEXT,
       image: SERVER_URL + props.card.image.url || UNKNOWN_IMAGE_URL,
-      trailerLink: props.card.trailerLink || UNKNOWN_TRAILER_URL,
+      trailerLink: urlPattern.test(props.card.trailerLink) ? props.card.trailerLink : UNKNOWN_TRAILER_URL,
       nameRU: props.card.nameRU || props.card.nameEN || UNKNOWN_CARD_TEXT,
       nameEN: props.card.nameEN || props.card.nameRU || UNKNOWN_CARD_TEXT,
       thumbnail: SERVER_URL + props.card.image.formats.thumbnail.url || UNKNOWN_IMAGE_URL,
@@ -54,7 +55,7 @@ export default function MoviesCard(props) {
         >
         </Button>
       </div>
-      <a href={props.card.trailerLink} className="movies-card__link" target="_blank" rel="noreferrer">
+      <a href={urlPattern.test(props.card.trailerLink) ? props.card.trailerLink : UNKNOWN_TRAILER_URL} className="movies-card__link" target="_blank" rel="noreferrer">
         <img className="movies-card__image" src={props.moviesPage ? SERVER_URL + props.card.image.url : props.card.image} alt={props.card.title} />
       </a>
     </li >

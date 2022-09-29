@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -8,7 +8,6 @@ import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import useDeviceScreenWidth from "../../hooks/useDeviceScreenWidth";
 import {
-    MOBILE_WIDTH,
     LAPTOP_WIDTH,
     LAPTOP_COUNT_MOVIES_START,
     LAPTOP_COUNT_MOVIES_MORE,

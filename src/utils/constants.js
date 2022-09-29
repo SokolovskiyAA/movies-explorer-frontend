@@ -142,3 +142,4 @@ export const LAPTOP_COUNT_MOVIES_START = 7;
 export const LAPTOP_COUNT_MOVIES_MORE = 7;
 export const MOBILE_COUNT_MOVIES_START = 5;
 export const MOBILE_COUNT_MOVIES_MORE = 1;
+export const urlPattern = new RegExp('(https?:\\/\\/)[a-zA-Z.:0-9-?]{2,}\\.[a-z]{2,}([-a-zA-Z0-9@:%_+.~#?&=/]*)');
