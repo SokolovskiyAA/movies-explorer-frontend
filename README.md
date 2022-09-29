@@ -7,7 +7,7 @@ MOVIES-EXPLORER-FRONEND
 
 Макет: https://disk.yandex.ru/d/qd_jpoFRkRaCvg
 Фронтенд: https://movies.sok.nomoredomains.sbs/  
-Ссылка на pull request:
+Ссылка на pull request: https://github.com/SokolovskiyAA/movies-explorer-frontend/pull/2
  
 ## Технологии
 ### Верстка
