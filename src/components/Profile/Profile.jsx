@@ -13,10 +13,11 @@ export default function Profile(props) {
     const currentUserData = useContext(CurrentUserContext);
 
     const { values, errors, setValues, handleChange, isFormValid, setIsFormValid } = useCustomValidation(currentUserData.name, currentUserData.email);
-
+    
     const amountInputs = countInputs(".input");
 
     useFormValidity(values, errors, amountInputs, setIsFormValid, currentUserData);
+    const isDataValid = isFormValid && (currentUserData.name !== values.name || currentUserData.email !== values.email);
 
     useEffect(() => props.setMessage(""), [props.setMessage]);
 
@@ -53,6 +54,7 @@ export default function Profile(props) {
                             value={values["name"] || ""}
                             error={errors["name"]}
                             onChange={handleChange}
+                            autoComplete="off"
                             required
                         />
                         <Input
@@ -63,6 +65,7 @@ export default function Profile(props) {
                             value={values["email"] || ""}
                             error={errors["email"]}
                             type="email"
+                            autoComplete="off"
                             required
                         />
                     </fieldset>
@@ -72,7 +75,7 @@ export default function Profile(props) {
                         {props.message}
                     </p>
                     <div className="profile__buttons">
-                        <Button className={`button_type_profile ${!isFormValid && "button_type_disabled"}`}
+                        <Button className={`button_type_profile ${!isDataValid && "button_type_disabled"}`}
                             type="submit"
                         >
                             Редактировать

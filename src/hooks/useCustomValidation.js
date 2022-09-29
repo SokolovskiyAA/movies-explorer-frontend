@@ -25,9 +25,7 @@ export const useCustomValidation = (currentName, currentEmail) => {
         }
         break;
       case "name":
-        if (value === currentName) {
-          setErrors({ ...errors, [name]: "" });
-        } else if (value.length === 0) {
+        if (value.length === 0) {
           setRequiredError(name);
         } else if (value.length < 2) {
           setErrors({
@@ -50,9 +48,7 @@ export const useCustomValidation = (currentName, currentEmail) => {
         }
         break;
       case "email":
-        if (value === currentEmail) {
-          setErrors({ ...errors, [name]: "" });
-        } else if (value.length === 0) {
+         if (value.length === 0) {
           setRequiredError(name);
         } else if (!validator.isEmail(value)) {
           setErrors({
