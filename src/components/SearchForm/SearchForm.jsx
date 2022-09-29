@@ -43,7 +43,7 @@ export default function SearchForm(props) {
       <div className="search-form__string">
         <input
           className="search-form__input"
-          placeholder="Фильм"
+          placeholder={`${errorText ? errorText : "Фильм"}`}
           name="film-query"
           type="text"
           onChange={handleChange}
@@ -57,7 +57,7 @@ export default function SearchForm(props) {
         >
         </Button>
       </div>
-      <span className="search-form__error">{errorText}</span>
+      <span className="search-form__error"></span>
       <label className="search-form__label" htmlFor="short-film">
         <input
           className="search-form__radio"

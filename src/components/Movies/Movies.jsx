@@ -27,38 +27,32 @@ export default function Movies(props) {
     const [lastQuery, setLastQuery] = useState("");
     const [shortFilmsCheck, setShortFilmsCheck] = useState(false);
     const [serchMessage, setSerchMessage] = useState("");
+    const [isFirstLoad, setIsFirstLoad] = useState(true);
     const [countMoviesToShow, setCountMoviesToShow] = React.useState(LAPTOP_COUNT_MOVIES_START);
     const [countMoviesToShowMore, setCountMoviesToShowMore] = React.useState(LAPTOP_COUNT_MOVIES_MORE);
 
     const token = localStorage.getItem("jwt");
     let allMovies = JSON.parse(localStorage.getItem("allMovies")) || [];
-    const settingData = props.moviesPage ? localStorage.getItem("settingData") : localStorage.getItem("settingDataSavePage");
+    //const settingData = props.moviesPage ? localStorage.getItem("settingData") : localStorage.getItem("settingDataSavePage");
+    const settingData = props.moviesPage && localStorage.getItem("settingData");
     let filteredMovies = JSON.parse(settingData)?.filteredMovies || [];
     let filteredShortMovies = JSON.parse(settingData)?.filteredShortMovies || [];
     const screenWidth = useDeviceScreenWidth();
     const hasMore = shortFilmsCheck ? filteredShortMovies.length !== movies.length : filteredMovies.length !== movies.length;
 
     useEffect(() => {
-        if (settingData) {
+        if (settingData && props.moviesPage) {
             setLastQuery(JSON.parse(settingData)?.query);
             setShortFilmsCheck(JSON.parse(settingData)?.isShortMovies);
         }
-    }, [settingData]);
-
-    const removeAllMoviesData = () => props.moviesPage ? localStorage.removeItem("settingData") : localStorage.removeItem("settingDataSavePage");
+    }, []);   
 
     useEffect(() => {
-        window.addEventListener("beforeunload", removeAllMoviesData);
-        return () => {
-            window.removeEventListener("beforeunload", removeAllMoviesData);
-        };
-    }, []);    
-
-    useEffect(() => {
+        
         if (props.moviesPage) {
             shortFilmsCheck
-                ? setMovies(filteredShortMovies.slice(0, countMoviesToShow))
-                : setMovies(filteredMovies.slice(0, countMoviesToShow));
+                ? setMovies(filteredShortMovies.slice(0, movies.length === 0 ? countMoviesToShow : movies.length))
+                : setMovies(filteredMovies.slice(0, movies.length === 0 ? countMoviesToShow : movies.length));
         }
         else {
             shortFilmsCheck
@@ -77,7 +71,7 @@ export default function Movies(props) {
     }, [props.moviesPage, shortFilmsCheck, settingData]);
 
     useEffect(() => {
-        if (movies.length === 0) {
+        if (movies.length === 0 && !isFirstLoad) {
             setSerchMessage("Ничего не найдено");
         }
         else {
@@ -106,22 +100,24 @@ export default function Movies(props) {
     }
 
     const submitHandler = async (isShortMovies, query) => {
-        
+        setSerchMessage("");
+        setIsFirstLoad(false);
         try {
             setIsLoading(true);
-            if (allMovies.length === 0) {        
+            setLastQuery(query);
+            if (allMovies.length === 0) {
                 const allMoviesData = await moviesApi.getMovies();
                 localStorage.setItem("allMovies", JSON.stringify(allMoviesData));
-                
+
                 //setAllMovies(JSON.parse(localStorage.getItem("allMovies")));
                 allMovies = JSON.parse(localStorage.getItem("allMovies"));
             }
-            
+
             // фильтр
             filteredMovies = props.moviesPage ? filterMovies(allMovies, query) : filterMovies(props.savedMovies, query);
             filteredShortMovies = props.moviesPage ? filterShortMovies(allMovies, query) : filterShortMovies(props.savedMovies, query);
             // создаем объект для сохранения в localStorage
-            
+
             const settingData = {
                 filteredMovies,
                 filteredShortMovies,
@@ -129,9 +125,7 @@ export default function Movies(props) {
                 isShortMovies,
             };
 
-            if (!props.moviesPage)
-                localStorage.setItem("settingDataSavePage", JSON.stringify(settingData));
-            else
+            if (props.moviesPage)
                 localStorage.setItem("settingData", JSON.stringify(settingData));
 
             // следим за чекбоксом выводим результат
@@ -143,6 +137,11 @@ export default function Movies(props) {
                 props.moviesPage ? setMovies(filteredMovies.slice(0, countMoviesToShow)) : query ?
                     setMovies(filteredMovies) : setMovies(props.savedMovies);
             }
+
+            if(movies.length === 0) {
+                setSerchMessage("Ничего не найдено");
+            }
+
             setIsLoading(false);
         } catch (e) {
             setMovies([]);
@@ -164,7 +163,6 @@ export default function Movies(props) {
             .then((e) => {
                 if (e?.message) {
                     console.log(e.message);
-                    //cardErrorHandler(e.message);
                 }
             })
             .catch((e) => console.log(e));
@@ -185,18 +183,13 @@ export default function Movies(props) {
     function handleClickMore() {
         const end = movies.length + countMoviesToShowMore;
         if (shortFilmsCheck) {
-            //if (filteredShortMovies.length - end >= 0) {
-                const newMovies = filteredShortMovies.slice(movies.length, end);
-                setMovies([...movies, ...newMovies]);
-            //}
+            const newMovies = filteredShortMovies.slice(movies.length, end);
+            setMovies([...movies, ...newMovies]);
         }
         else {
-            //if (filteredMovies.length - end >= 0) {
-                const newMovies = filteredMovies.slice(movies.length, end);
-                setMovies([...movies, ...newMovies]);
-            //}
+            const newMovies = filteredMovies.slice(movies.length, end);
+            setMovies([...movies, ...newMovies]);
         }
-        console.log(filteredMovies.length, movies.length);
     }
 
     return (
@@ -214,7 +207,6 @@ export default function Movies(props) {
                 />
                 {isLoading ? (<Preloader />) : (
                     <MoviesCardList
-                        // movies={props.moviesPage ? movies : props.savedMovies}
                         movies={movies}
                         savedMovies={props.savedMovies}
                         moviesPage={props.moviesPage}
