@@ -1,6 +1,3 @@
 import React from 'react';
 
-export const CurrentUserContext = React.createContext({
-    onSavedPage: false,
-    setOnSavedPage: () => { },
-});
+export const CurrentUserContext = React.createContext();
